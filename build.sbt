@@ -1,9 +1,12 @@
 import Dependencies._
+import NGLDependencies._
 
-name := "authenticationAuthorization"
-
-version := "0.0.1"
-
-scalaVersion := "2.12.8"
-
-libraryDependencies ++= coreDependencies
+lazy val root = (project in file("."))
+  .settings(
+    name := "aa",
+    scalaVersion := "2.12.8",
+    organization := "com.bheaver.ngl4",
+    version := "0.0.1-SNAPSHOT",
+    libraryDependencies ++= coreDependencies,
+    libraryDependencies ++= nglDependencies
+  )

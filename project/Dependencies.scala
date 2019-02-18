@@ -7,17 +7,24 @@ object Versions {
   val mongoDriverVersion = "3.9.1"
 }
 
+object NGLVersions {
+  val globalVersion = "0.0.1-SNAPSHOT"
+}
+
 object Dependencies {
 
   val springWebFlux = "org.springframework" % "spring-webflux" % Versions.springWebFluxVersion
 
   val reactiveMongoStreams = "org.mongodb" % "mongodb-driver-reactivestreams" % Versions.mongoReactiveStreams
-  val bson = "org.mongodb" % "bson" % Versions.mongoDriverVersion
-  val mongoCore = "org.mongodb" % "mongodb-driver-core" % Versions.mongoDriverVersion
   val mongoAsyncCore = "org.mongodb" % "mongodb-driver-async" % Versions.mongoDriverVersion
   val reactiveStreams = "org.reactivestreams" % "reactive-streams" % Versions.reactiveStreams
   val mongoJavaDriver = "org.mongodb" % "mongo-java-driver" % Versions.mongoDriverVersion
 
-  val coreDependencies = Seq(springWebFlux, reactiveMongoStreams,bson,mongoCore,mongoAsyncCore,reactiveStreams,mongoJavaDriver)
+  val coreDependencies = Seq(springWebFlux, reactiveMongoStreams,mongoAsyncCore,reactiveStreams,mongoJavaDriver)
 
+}
+object NGLDependencies {
+  val util = "com.bheaver.ngl4" %% "util" % NGLVersions.globalVersion
+
+  val nglDependencies = Seq(util)
 }
