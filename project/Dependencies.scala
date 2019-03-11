@@ -1,10 +1,10 @@
 import sbt._
 
 object Versions {
-  val springWebFluxVersion = "5.1.4.RELEASE"
   val mongoReactiveStreams = "1.10.0"
   val reactiveStreams = "1.0.2"
   val mongoDriverVersion = "3.9.1"
+  val springBootWebFluxVersion = "2.1.3.RELEASE"
 }
 
 object NGLVersions {
@@ -13,14 +13,14 @@ object NGLVersions {
 
 object Dependencies {
 
-  val springWebFlux = "org.springframework" % "spring-webflux" % Versions.springWebFluxVersion
+  val springBootWebFlux = "org.springframework.boot" % "spring-boot-starter-webflux" % Versions.springBootWebFluxVersion
 
   val reactiveMongoStreams = "org.mongodb" % "mongodb-driver-reactivestreams" % Versions.mongoReactiveStreams
   val mongoAsyncCore = "org.mongodb" % "mongodb-driver-async" % Versions.mongoDriverVersion
   val reactiveStreams = "org.reactivestreams" % "reactive-streams" % Versions.reactiveStreams
   val mongoJavaDriver = "org.mongodb" % "mongo-java-driver" % Versions.mongoDriverVersion
 
-  val coreDependencies = Seq(springWebFlux, reactiveMongoStreams,mongoAsyncCore,reactiveStreams,mongoJavaDriver)
+  val coreDependencies = Seq(springBootWebFlux, reactiveMongoStreams,mongoAsyncCore,reactiveStreams,mongoJavaDriver)
 
 }
 object NGLDependencies {
