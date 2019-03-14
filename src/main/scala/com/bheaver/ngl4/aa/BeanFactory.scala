@@ -11,7 +11,7 @@ import org.springframework.context.annotation.{Bean, ComponentScan, Configuratio
 import scala.io.Source
 
 @Configuration
-@ComponentScan(basePackages = Array("com.bheaver.ngl4.util","com.bheaver.ngl4.util.filters"))
+@ComponentScan(basePackages = Array("com.bheaver.ngl4.util","com.bheaver.ngl4.util.filters","com.bheaver.ngl4.util.config"))
 class BeanFactory {
   @Bean(Array("AuthenticateService"))
   def getAuthenticateService(@Qualifier("Database") database: Database): AuthenticateService = {

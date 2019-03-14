@@ -1,6 +1,9 @@
+spring:
+  profiles: dev
 general:
   mongodb:
     masterdb: master
     servers:
       - ip: localhost
         port: 27017
+---
