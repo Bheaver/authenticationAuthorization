@@ -9,4 +9,4 @@ lazy val root = (project in file("."))
     version := "0.0.1-SNAPSHOT",
     libraryDependencies ++= coreDependencies,
     libraryDependencies ++= nglDependencies
-  )
+)
