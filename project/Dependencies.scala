@@ -7,6 +7,7 @@ object Versions {
   val springBootWebFluxVersion = "2.1.3.RELEASE"
   val log4j2Version = "2.11.2"
   val log4j2ScalaAPIVersion = "11.0"
+  val jose4jVersion = "0.6.5"
 }
 
 object NGLVersions {
@@ -26,7 +27,11 @@ object Dependencies {
   val log4j2Core = "org.apache.logging.log4j" % "log4j-core" % Versions.log4j2Version
   val log4j2API = "org.apache.logging.log4j" % "log4j-api" % Versions.log4j2Version
   val guava = "com.google.guava" % "guava" % "27.1-jre"
-  val coreDependencies = Seq(springBootWebFlux, reactiveMongoStreams,mongoAsyncCore,reactiveStreams,mongoJavaDriver, log4j2API,log4j2Core,log4j2ScalaAPI,guava)
+  val jose4j = "org.bitbucket.b_c" % "jose4j" % Versions.jose4jVersion
+
+  val coreDependencies = Seq(springBootWebFlux, reactiveMongoStreams,
+    mongoAsyncCore,reactiveStreams,mongoJavaDriver, log4j2API,
+    log4j2Core,log4j2ScalaAPI,guava,jose4j)
 
 }
 object NGLDependencies {
