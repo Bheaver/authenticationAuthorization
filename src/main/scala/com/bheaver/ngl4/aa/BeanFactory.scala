@@ -1,11 +1,9 @@
 package com.bheaver.ngl4.aa
 
-import java.io.File
-
 import com.bheaver.ngl4.aa.services._
+import com.bheaver.ngl4.util.config.ApplicationConf
 import com.bheaver.ngl4.util.mongoUtils.Database
 import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage
 import org.springframework.context.annotation.{Bean, ComponentScan, Configuration, DependsOn}
 
 import scala.io.Source
@@ -31,7 +29,7 @@ class BeanFactory {
     strings.toArray.mkString("\n")
   }
   @Bean(Array("JWTTool"))
-  def getJSTTool(): JWTService = {
-    new JWTServiceImpl
+  def getJSTTool(applicationConf: ApplicationConf): JWTService = {
+    new JWTServiceImpl(applicationConf)
   }
 }

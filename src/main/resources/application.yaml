@@ -6,4 +6,11 @@ general:
     servers:
       - ip: localhost
         port: 27017
----
+
+  jwt:
+    keyId: NGLKeyAuth
+    issuer: Bheaver Inc
+    audience: NGL Client
+    expirationTimeInMins: 30
+    subject: NGL Client Authorization Token
+    email: sid.errabolu@gmail.com

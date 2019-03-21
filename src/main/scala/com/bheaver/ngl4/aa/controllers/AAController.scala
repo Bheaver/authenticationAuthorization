@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.{Autowired, Qualifier}
 import org.springframework.web.bind.annotation._
 import reactor.core.publisher.Mono
 import com.bheaver.ngl4.util.model.ErrorResponse
+import org.springframework.http.HttpStatus
+import org.springframework.http.server.ServerHttpResponse
+import org.springframework.web.server.ServerWebExchange
 
 import scala.util.{Failure, Success, Try}
 
@@ -33,12 +36,16 @@ class AAController {
 
   @PostMapping(path = Array("/authenticate"))
   def authenticateUser(@RequestBody authenticateRequestHttpBody: AuthenticateRequestHttpBody,
-                       @RequestHeader("libCode") libCode: String): Mono[AuthenticateResponse] = {
+                       @RequestHeader("libCode") libCode: String,
+                       exchange: ServerWebExchange): Mono[AuthenticateResponse] = {
       authenticateService.authenticateUser(AuthenticateRequest(authenticateRequestHttpBody.username,
         authenticateRequestHttpBody.password,
         authenticateRequestHttpBody.libCode)).map(eitherOfVal => {
         eitherOfVal match {
-          case Left(value) => AuthenticateResponse(false, null, null, ErrorResponse(500, "Authentication Error"))
+          case Left(value) => {
+            exchange.getResponse.setStatusCode(HttpStatus.UNAUTHORIZED)
+            AuthenticateResponse(false, null, null, ErrorResponse(401, "Authentication Error"))
+          }
           case Right(value) => value
         }
       })
