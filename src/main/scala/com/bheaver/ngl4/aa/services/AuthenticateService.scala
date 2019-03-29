@@ -27,25 +27,25 @@ class AuthenticateServiceImpl(database: Database,
       if (!document.getString("user_password").equals(MD5Utils.md5HashString(authenticateRequest.password))) {
         None
       } else {
-        val fname = document.getString("fname")
-        val mname = document.getString("mname")
-        val lname = document.getString("lname")
+        val fname = Option(document.getString("fname")).getOrElse("")
+        val mname = Option(document.getString("mname")).getOrElse("")
+        val lname = Option(document.getString("lname")).getOrElse("")
         val patronCategoryId = document.getInteger("patron_category_id").toString
 
-        Some(Patron(document.getString("patron_id"), s"${fname} ${mname} ${lname}", patronCategoryId))
+        Some(Patron(document.getString("patron_id"), s"$fname $mname $lname".trim, patronCategoryId))
       }
     })
-      .zipWhen[String](optionalPatron => {
+      .zipWhen[String](optionalPatron =>
       optionalPatron match {
         case Some(value) => jwtService.encrypt(value)
         case None => Mono.just("")
       }
-    })
-      .map(tuple => {
+    )
+      .map(tuple =>
       tuple.getT1 match {
         case Some(value) => Right(new AuthenticateResponse(true,tuple.getT2,value,null))
         case None => Left(new AuthenticationException("Authentication failed"))
       }
-    })
+    )
   }
 }

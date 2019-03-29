@@ -6,6 +6,8 @@ general:
     servers:
       - ip: localhost
         port: 27017
+  microservices:
+    aa: http://localhost:8081/aa/
 
   jwt:
     keyId: NGLKeyAuth
